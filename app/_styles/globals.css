@@ -1,0 +1,230 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /*    measures     */
+  --navbar-height: 10dvh;
+  --main-height: 85dvh;
+  --footer-height: 5dvh;
+  --leftAside-width: 20dvw;
+  --table-width: 60dvw;
+
+  /*      colors       */
+  --white: #cacaca;
+  --white80: #cacaca80;
+  --white25: #cacaca25;
+  --black: #404040;
+  --black80: #40404080;
+  --black25: #40404025;
+  --gray: #888;
+  --gray-dark: #555;
+
+  --ragazzi: #ffff7d50;
+  --patricios: #7dfd7d50;
+  --palihue: #ffc8c875;
+  --jmolina: #9ed7ff50;
+
+  --background-light: linear-gradient(125deg, #999, #ccc);
+  --background-dark: linear-gradient(125deg, #202020, #111);
+  --nav-bg-light: #999;
+  --nav-bg-dark: #202020;
+  --table-bg-light: linear-gradient(125deg, #cccccc50, #99999950);
+  --table-bg-dark: linear-gradient(125deg, #20202050, #11111150);
+
+  /*      logo         */
+  --logo-light: url("../_assets/logo-light.svg");
+  --logo-bg: var(--logo-light);
+  --logo-bg-inv: url("../_assets/logo-dark.svg");
+
+  /*      theme        */
+  --background: var(--background-light);
+  --nav-bg: var(--nav-bg-light);
+  --table-bg: var(--table-bg-light);
+  --foreground: var(--black);
+  --foreground80: var(--black80);
+  --foreground25: var(--black25);
+  --bg-card: var(--gray);
+}
+
+[data-theme='dark'] {
+  --background: var(--background-dark);
+  --nav-bg: var(--nav-bg-dark);
+  --table-bg: var(--table-bg-dark);
+  --foreground: var(--white);
+  --foreground80: var(--white80);
+  --foreground25: var(--white25);
+  --bg-card: var(--gray-dark);
+
+  --logo-dark: url("../_assets/logo-dark.svg");
+  --logo-bg: var(--logo-dark);
+  --logo-bg-inv: url("../_assets/logo-light.svg");
+}
+
+/* @media (prefers-color-scheme: dark) {
+  .main-page {
+    background-color: blue;
+  }
+} */
+
+dialog::backdrop {
+  background-color: rgb(0, 0, 0, 0.6);
+  backdrop-filter: blur(2px);
+}
+
+.todos {
+  background: var(--foreground25)
+}
+
+.ragazzi {
+  background: var(--ragazzi)
+}
+
+.patricios {
+  background: var(--patricios)
+}
+
+.palihue {
+  background: var(--palihue)
+}
+
+.jmolina {
+  background: var(--jmolina)
+}
+
+input[type="checkbox"] {
+  accent-color: var(--gray);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.25);
+  background-image: url('../_assets/calendar.svg');
+  scale: 1.35;
+}
+
+select option {
+  background: var(--black80);
+  color: white;
+}
+
+table {
+  table-layout: fixed;
+}
+
+td,
+input {
+  vertical-align: middle;
+}
+
+.table-container {
+  scrollbar-color: var(--black80) transparent;
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
+}
+
+.movil-navbar li {
+  opacity: 0;
+  animation: reveal 0.25s ease-in-out forwards;
+}
+
+.modal-container,
+.histo-modal-container {
+  opacity: 0;
+  animation: modalReveal 0.5s ease-in-out forwards;
+}
+
+@keyframes reveal {
+  from {
+    transform: translateX(50%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes modalReveal {
+  from {
+    transform: translate(-45%, -45%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+}
+
+@layer components {
+  .btn-main {
+    @apply px-6 py-4 bg-black text-white border border-[#222] rounded-lg transition shadow tracking-wide font-semibold grow flex justify-center items-center h-20
+  }
+
+  .btn-main:hover {
+    @apply hover:bg-black80 hover:text-white
+  }
+
+
+  .btn-main-error {
+    @apply px-4 py-2 bg-[#ff000050] text-foreground border border-black rounded-lg transition shadow tracking-wide font-semibold grow flex justify-center items-center
+  }
+
+  .btn-main-error:hover {
+    @apply hover:bg-[#ff000080]
+  }
+
+
+  .btn-main-success {
+    @apply px-4 py-2 bg-black80 text-[#222] border border-black rounded-lg transition shadow tracking-wide font-semibold grow flex justify-center items-center
+  }
+
+  .btn-main-success:hover {
+    @apply hover:bg-[#00800050]
+  }
+
+
+  .btn-main-ghost {
+    @apply px-4 py-2 text-[#222] rounded-lg transition shadow tracking-wide font-semibold grow flex justify-center items-center
+  }
+
+  .btn-main-ghost:hover {
+    @apply hover:bg-black25
+  }
+
+
+  .card {
+    @apply bg-card p-8 px-10 rounded-lg border border-black80 shadow
+  }
+
+  .input-main {
+    @apply bg-white80 py-2 px-4 rounded-lg border border-white shadow text-black
+  }
+
+  .input-main:hover {
+    @apply bg-black25
+  }
+
+  .input-main::placeholder {
+    @apply text-black80
+  }
+
+  .input-main:focus {
+    @apply text-white
+  }
+
+  .badge-main {
+    @apply rounded-xl py-1 px-2 text-foreground border border-black25 cursor-pointer shadow tracking-wider text-center
+  }
+
+  .badge-main:hover {
+    @apply hover:text-foreground80
+  }
+}
