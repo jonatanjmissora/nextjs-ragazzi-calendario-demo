@@ -6,7 +6,7 @@ export default async function getUserFromCookie() {
   const cookie = (await cookies()).get("usertoken")?.value
   if (cookie) {
     try {
-      const decoded = jwt.verify(cookie, process.env.JWTSECRET!)
+      const decoded = jwt.verify(cookie, "SECRET")
       return decoded
     } catch (error) {
       return getErrorMessage(error)

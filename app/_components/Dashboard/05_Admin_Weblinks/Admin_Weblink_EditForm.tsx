@@ -1,7 +1,6 @@
 "use client"
 
 import UploadSVG from "@/app/_assets/UploadSVG";
-import { editarNewWeblinkAction, editarWeblinkAction, insertarWeblinkAction } from "@/app/_lib/actions/weblinks.action";
 import { ServerResponseType } from "@/app/_lib/schema/serverResponse.type";
 import { WeblinkType } from "@/app/_lib/schema/weblink.type";
 import Link from "next/link";
@@ -10,12 +9,6 @@ import { useActionState, useRef, useState } from "react"
 import toast from "react-hot-toast";
 import SubmitBtn from "../../SubmitBtn";
 import AdminWeblinkEditFormModal from "./Admin_Weblink_EditForm_Modal";
-
-const isSame = (oldLink: WeblinkType, newLink: WeblinkType) => {
-  return (oldLink._id === newLink._id &&
-    oldLink.href === newLink.href &&
-    oldLink.imgData === newLink.imgData.substring(23))
-}
 
 export default function WeblinkEditForm({ weblink }: { weblink: WeblinkType }) {
 
@@ -38,44 +31,13 @@ export default function WeblinkEditForm({ weblink }: { weblink: WeblinkType }) {
   }
 
   const [formState, formAction, isPending] = useActionState(async (prevState: ServerResponseType, formData: FormData) => {
-    const newWeblink = Object.fromEntries(formData.entries()) as WeblinkType
 
-    if (isSame(weblink, newWeblink)) return {
-      success: false,
-      prevState: { _id: newWeblink._id, href: newWeblink.href },
-      message: "Los campos son iguales"
-    }
 
-    if (!imgData) {
-      return {
-        success: false,
-        prevState: { _id: newWeblink._id, href: newWeblink.href },
-        message: "No hay imagen"
-      }
-    }
+    toast.success("Link editado")
+    router.push("/admin/weblinks")
 
-    // si es link nuevo
-    if (!weblink._id) {
+    return
 
-      const serverResponse = await insertarWeblinkAction(newWeblink)
-      if (serverResponse.success) {
-        toast.success(serverResponse.message)
-        router.push("/admin/weblinks")
-      }
-      return serverResponse
-    }
-    // si hay que editar
-    else {
-      const serverResponse2 = weblink._id === newWeblink._id
-        ? await editarWeblinkAction(newWeblink)
-        : await editarNewWeblinkAction(weblink, newWeblink)
-
-      if (serverResponse2.success) {
-        toast.success(serverResponse2.message)
-        router.push("/admin/weblinks")
-      }
-      return serverResponse2
-    }
 
   }, null)
 
@@ -105,9 +67,9 @@ export default function WeblinkEditForm({ weblink }: { weblink: WeblinkType }) {
 
           <div className="w-full flex flex-col justify-between items-start text-center gap-1">
             <label htmlFor="_id">titulo</label>
-            <input className="input-main w-full text-center" type="text" name="_id" id="_id" defaultValue={formState?.prevState?._id ?? weblink._id} required />
+            <input className="input-main w-full text-center" type="text" name="_id" id="_id" defaultValue={weblink._id} required />
             <label htmlFor="href">href</label>
-            <input className="input-main w-full text-center" type="text" name="href" id="href" defaultValue={formState?.prevState?.href ?? weblink.href} required />
+            <input className="input-main w-full text-center" type="text" name="href" id="href" defaultValue={weblink.href} required />
             <input className="hidden" type="text" name="imgData" id="imgData" defaultValue={imgData} />
           </div>
 

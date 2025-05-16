@@ -7,16 +7,16 @@ import EditForm from "../EditForm";
 
 export default function PendienteEditForm({ pendiente, sectoresReset }: { pendiente: PagoType, sectoresReset: SectoresType[] }) {
 
-    const [formState, formAction, isPending] = usePendienteActionState(pendiente)
+    const [, formAction, isPending] = usePendienteActionState(pendiente)
 
     return (
         <EditForm
             pagoType={"pendiente"}
             pago={pendiente}
             sectoresReset={sectoresReset}
-            formState={formState}
             formAction={formAction}
             isPending={isPending}
+            formState={null}
         />
     )
 }

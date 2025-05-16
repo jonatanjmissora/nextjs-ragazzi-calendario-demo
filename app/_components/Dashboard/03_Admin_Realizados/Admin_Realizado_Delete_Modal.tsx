@@ -1,7 +1,6 @@
 "use client"
 
 import TrashSVG from "@/app/_assets/TrashSVG"
-import { eliminarRealizadoAction } from "@/app/_lib/actions/realizados.action"
 import { PagoType } from "@/app/_lib/schema/pago.type"
 import { useActionState, useRef } from "react"
 import toast from "react-hot-toast"
@@ -18,11 +17,7 @@ export const AdminRealizadoDeleteModal = ({ realizado, dialogRef2 }: { realizado
 
   const [, formAction, isPending] = useActionState(async () => {
 
-    const res = await eliminarRealizadoAction(realizado)
-    if (!res?.success) {
-      toast.error(res.message)
-    }
-    else toast.success(res.message)
+    toast.success("Vencimiento eliminado")
     closeAllDialog()
 
   }, null)

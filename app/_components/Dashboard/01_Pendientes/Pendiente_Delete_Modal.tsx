@@ -1,9 +1,8 @@
 "use client"
 
 import TrashSVG from "@/app/_assets/TrashSVG"
-import { eliminarPendienteAction } from "@/app/_lib/actions/pendientes.action"
 import { PagoType } from "@/app/_lib/schema/pago.type"
-import { useActionState, useRef } from "react"
+import { useRef } from "react"
 import toast from "react-hot-toast"
 import SubmitBtn from "../../SubmitBtn"
 
@@ -11,17 +10,13 @@ export const PendienteDeleteModal = ({ pendiente, dialogRef2 }: { pendiente: Pag
 
   const dialogRef = useRef<HTMLDialogElement>(null)
 
-  const [, formAction, isPending] = useActionState(async () => {
+  const formAction = () => {
 
-    const res = await eliminarPendienteAction(pendiente)
-    if (!res?.success) {
-      toast.error(res.message)
-    }
-    else toast.success(res.message)
-    if( dialogRef2 ) dialogRef2.current?.close()
+    toast.success("Vencimiento borrado")
+    if (dialogRef2) dialogRef2.current?.close()
     dialogRef.current?.close()
 
-  }, null)
+  }
 
   return (
     <>
@@ -36,7 +31,7 @@ export const PendienteDeleteModal = ({ pendiente, dialogRef2 }: { pendiente: Pag
           </div>
           <div className="modal-action">
             <form action={formAction} className="flex gap-1 w-1/2">
-              <SubmitBtn isPending={isPending} text="Si" className="size-11" />
+              <SubmitBtn isPending={false} text="Si" className="size-11" />
               <button onClick={() => dialogRef.current?.close()} type="button" className="btn-main-error">No</button>
             </form>
           </div>

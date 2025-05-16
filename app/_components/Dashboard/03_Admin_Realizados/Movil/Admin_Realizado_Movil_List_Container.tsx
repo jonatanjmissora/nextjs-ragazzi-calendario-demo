@@ -6,9 +6,8 @@ import NoPays from '../../NoPays'
 import { PagoType } from '@/app/_lib/schema/pago.type'
 
 export default async function AdminRealizadoMovilListContainer({ rubroFilter, sectorFilter, hastaFilter, desdeFilter }: { rubroFilter: string, sectorFilter: string, hastaFilter: string, desdeFilter: string }) {
-
   const pagosRealizados = await getCachedRealizadosAction()
-  const filteredRealizados = getFilteredPagos(pagosRealizados, rubroFilter, sectorFilter, undefined, hastaFilter, desdeFilter) as PagoType[]
+  const filteredRealizados = getFilteredPagos(pagosRealizados as PagoType[], rubroFilter, sectorFilter, undefined, hastaFilter, desdeFilter) || []
 
   if (filteredRealizados.length === 0) return <NoPays />
 

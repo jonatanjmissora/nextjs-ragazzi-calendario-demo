@@ -9,6 +9,9 @@ export default async function RealizadoEditFormContainer({ id }: { id: string })
   const sectoresReset = await getCachedSectoresResetAction()
 
   return (
-    <RealizadoEditForm realizado={realizado} sectoresReset={sectoresReset} />
+    <RealizadoEditForm
+      realizado={realizado}
+      sectoresReset={sectoresReset as { _id: "ragazzi" | "patricios" | "palihue" | "jmolina"; sectores: string[]; }[]}
+    />
   )
 }

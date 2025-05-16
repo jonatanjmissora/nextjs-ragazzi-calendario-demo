@@ -12,9 +12,15 @@ export default async function RealizadoDesktopListContainer({ rubroFilter, dateF
         ? pagosRealizados
         : pagosRealizados.filter(pago => pago.rubro === rubroFilter)
 
-    if (filteredRealizados.length === 0) return <NoPays />
+    if (filteredRealizados.length === 0)
+        return (
+            <div>
+                <p className="pb-8 text-center">Demo version, try 2024 year</p>
+                <NoPays />
+            </div>
+        )
 
     return (
-        <RealizadoDesktopList realizados={filteredRealizados} />
+        <RealizadoDesktopList realizados={filteredRealizados as { _id: string; rubro: "ragazzi" | "patricios" | "palihue" | "jmolina"; sector: string; monto: string; vencimiento: string; pagado?: string }[]} />
     )
 }

@@ -1,6 +1,5 @@
 "use client"
 
-import { updateSectoresActualesAction, updateSectoresResetAction } from '@/app/_lib/actions/sectores.action';
 import { SectoresType } from '@/app/_lib/schema/sectores.type';
 import React, { useActionState } from 'react'
 import toast from 'react-hot-toast';
@@ -16,27 +15,8 @@ export default function AdminSectoresNewForm({ sectoresType, sectoresList, rubro
 
   const [, formAction, isPending] = useActionState(async (prevState: RespType, formData: FormData) => {
 
-    const rubro = formData.get("rubro") as string
-    const newSector = formData.get("newSector")?.toString().trim()
-    if (!newSector) return null
-
-    const sectoresActual = sectoresList.filter(r => r._id === rubro)[0].sectores
-
-    if (sectoresActual.includes(newSector)) {
-      toast.error("Ya se encuentra")
-      return null
-    }
-
-    const newSectores = [...sectoresActual, newSector]
-
-    const serverResp = sectoresType === "reset"
-      ? await updateSectoresResetAction(rubro, newSectores)
-      : await updateSectoresActualesAction(rubro, newSectores)
-    if (!serverResp.success) {
-      toast.error("No fue posible agregar sector")
-    }
-    toast.success(`${newSector} añadido con éxito`)
-    return serverResp
+    toast.success(`Sector añadido`)
+    return
 
   }, null)
 

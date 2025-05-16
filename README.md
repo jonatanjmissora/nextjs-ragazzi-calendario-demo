@@ -27,6 +27,5 @@ This repository was built by [Jonatan Missora](https://github.com/jonatanjmissor
 
 TODO:
 
-en realizados estoy, en la parte de listar los realizadosgetRealizadosFilterAction y getRealizadosYearBySectorAction
-
-borrar cuando no necesite los db
+poner que es una version demo en el footer, 
+el edit form, no toma el alto de la pantalla, el footer esta pegado

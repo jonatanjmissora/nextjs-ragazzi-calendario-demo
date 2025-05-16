@@ -1,7 +1,6 @@
 "use client"
 
 import TrashSVG from "@/app/_assets/TrashSVG"
-import { updateSectoresActualesAction, updateSectoresResetAction } from "@/app/_lib/actions/sectores.action"
 import { useActionState, useRef } from "react"
 import toast from "react-hot-toast"
 import SubmitBtn from "../../SubmitBtn"
@@ -12,15 +11,7 @@ export default function AdminSectoresDeleteModal({ sectoresType, rubro, sector, 
 
   const [, formAction, isPending] = useActionState(async () => {
 
-    const newSectores = sectores.filter(sc => sc !== sector)
-
-    const res = sectoresType === "reset"
-      ? await updateSectoresResetAction(rubro, newSectores)
-      : await updateSectoresActualesAction(rubro, newSectores)
-    if (!res?.success) {
-      toast.error(res.message)
-    }
-    else toast.success(res.message)
+    toast.success("Sector borrado")
     dialogRef.current?.close()
 
   }, null)

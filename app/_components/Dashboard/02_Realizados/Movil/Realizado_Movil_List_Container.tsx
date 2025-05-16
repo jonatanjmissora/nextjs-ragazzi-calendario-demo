@@ -11,9 +11,22 @@ export default async function RealizadoMovilListContainer({ rubroFilter, dateFil
     ? pagosRealizados
     : pagosRealizados.filter(pago => pago.rubro === rubroFilter)
 
-  if (filteredRealizados.length === 0) return <NoPays />
+  if (filteredRealizados.length === 0)
+    return (
+      <div>
+        <p className="pb-8 text-center">Demo version, try 2024 year</p>
+        <NoPays />
+      </div>
+    )
 
   return (
-    <RealizadoMovilList realizados={filteredRealizados} />
+    <RealizadoMovilList realizados={filteredRealizados as {
+      _id: string;
+      rubro: "jmolina" | "patricios" | "ragazzi" | "palihue";
+      sector: string;
+      monto: string;
+      vencimiento: string;
+      pagado?: string;
+    }[]} />
   )
 }

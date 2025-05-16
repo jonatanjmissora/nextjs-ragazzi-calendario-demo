@@ -25,7 +25,7 @@ const isSame = (pagoType: string, oldPendiente: PagoType, newPendiente: PagoType
   )
 }
 
-export default function EditForm({ pagoType, pago, sectoresReset, formState, formAction, isPending }: { pagoType: PType, pago: PagoType, sectoresReset: SectoresType[], formState: ServerResponseType, formAction: FormActionType, isPending: boolean }) {
+export default function EditForm({ pagoType, pago, sectoresReset, formAction, isPending }: { pagoType: PType, pago: PagoType, sectoresReset: SectoresType[], formState: ServerResponseType, formAction: FormActionType, isPending: boolean }) {
 
   const { vencimiento, rubro, sector, monto } = pago
   const [showConfirm, setShowConfirm] = useState<boolean>(false)
@@ -114,7 +114,7 @@ export default function EditForm({ pagoType, pago, sectoresReset, formState, for
               </div>
             }
 
-            {formState?.message ? <span className="text-red-900 italic">{formState.message}</span> : <span className="text-transparent"></span>}
+
 
             <div className="w-full flex gap-1">
               <SubmitBtn text="Editar" isPending={isPending} className="size-11 w-1/2" />

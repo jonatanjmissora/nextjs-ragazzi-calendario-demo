@@ -10,7 +10,10 @@ export default async function PendienteEditFormContainer({ id }: { id: string })
 
   return (
     <>
-      <PendienteEditForm pendiente={pendiente} sectoresReset={sectoresReset} />
+      <PendienteEditForm
+        pendiente={pendiente}
+        sectoresReset={sectoresReset as { _id: "ragazzi" | "patricios" | "palihue" | "jmolina"; sectores: string[]; }[]}
+      />
     </>
   )
 }

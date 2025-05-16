@@ -205,7 +205,7 @@ input {
   }
 
   .input-main {
-    @apply bg-white80 py-2 px-4 rounded-lg border border-white shadow text-black
+    @apply bg-white80 py-2 px-4 rounded-lg border border-white shadow text-[var(--black)]
   }
 
   .input-main:hover {
@@ -214,10 +214,6 @@ input {
 
   .input-main::placeholder {
     @apply text-black80
-  }
-
-  .input-main:focus {
-    @apply text-white
   }
 
   .badge-main {

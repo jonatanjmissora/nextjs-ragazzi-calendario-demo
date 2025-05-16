@@ -1,7 +1,6 @@
 "use client"
 
 import TrashSVG from "@/app/_assets/TrashSVG"
-import { eliminarWeblinkAction } from "@/app/_lib/actions/weblinks.action"
 import { WeblinkType } from "@/app/_lib/schema/weblink.type"
 import { useActionState, useRef } from "react"
 import toast from "react-hot-toast"
@@ -13,11 +12,7 @@ export const WeblinkDeleteModal = ({ weblink }: { weblink: WeblinkType }) => {
 
   const [, formAction, isPending] = useActionState(async () => {
 
-    const res = await eliminarWeblinkAction(weblink)
-    if (!res?.success) {
-      toast.error(res.message)
-    }
-    else toast.success(res.message)
+    toast.success("Link eliminado")
     dialogRef.current?.close()
 
   }, null)

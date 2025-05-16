@@ -9,8 +9,17 @@ export default async function RealizadoDesktopHistoContainer({ realizado }: { re
 
   const [fromDate, toDate] = getFullYearOf(getActualDateStr())
   const realizadosYearBySector = await getCachedRealizadosYearBySectorAction(realizado, fromDate, toDate)
-
   return (
-    <RealizadoDesktopHisto realizado={realizado} allRealizados={realizadosYearBySector} />
+    <RealizadoDesktopHisto
+      realizado={realizado}
+      allRealizados={realizadosYearBySector as {
+        _id: string;
+        rubro: "ragazzi" | "patricios" | "palihue" | "jmolina";
+        sector: string;
+        monto: string;
+        vencimiento: string;
+        pagado?: string;
+      }[]}
+    />
   )
 }
