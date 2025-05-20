@@ -10,7 +10,13 @@ export default async function RealizadoMovilHistoContainer({ realizado }: { real
   const [fromDate, toDate] = getFullYearOf(getActualDateStr())
   const realizadosYearBySector = await getCachedRealizadosYearBySectorAction(realizado, fromDate, toDate)
 
+  // Map 'rubro' to the allowed union type
+  const mappedRealizadosYearBySector = realizadosYearBySector.map((item) => ({
+    ...item,
+    rubro: item.rubro as "ragazzi" | "patricios" | "palihue" | "jmolina",
+  }))
+
   return (
-    <RealizadoMovilHisto realizado={realizado} allRealizados={realizadosYearBySector} />
+    <RealizadoMovilHisto realizado={realizado} allRealizados={mappedRealizadosYearBySector} />
   )
 }

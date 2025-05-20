@@ -8,7 +8,7 @@ export const getErrorMessage = (error: unknown): string => {
   } else if (typeof error === "string") {
     message = error
   } else {
-    message = "ALgo salio mal"
+    message = "ALgo salió mal"
   }
 
   return message

@@ -1,7 +1,6 @@
 "use client"
 
 import UploadSVG from "@/app/_assets/UploadSVG";
-import { ServerResponseType } from "@/app/_lib/schema/serverResponse.type";
 import { WeblinkType } from "@/app/_lib/schema/weblink.type";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -30,7 +29,7 @@ export default function WeblinkEditForm({ weblink }: { weblink: WeblinkType }) {
     }
   }
 
-  const [formState, formAction, isPending] = useActionState(async (prevState: ServerResponseType, formData: FormData) => {
+  const [, formAction, isPending] = useActionState(async () => {
 
 
     toast.success("Link editado")
@@ -81,11 +80,7 @@ export default function WeblinkEditForm({ weblink }: { weblink: WeblinkType }) {
             <SubmitBtn text={"Upload"} isPending={isPending} className="size-11 flex-1" />
             <Link className="btn-main-error flex-1" href={"/admin/weblinks"} >Cancelar</Link>
           </div>
-          {
-            formState?.message
-              ? <span className="text-yellow-700">{formState?.message}</span>
-              : <span className="h-6"></span>
-          }
+
         </div>
 
       </form>

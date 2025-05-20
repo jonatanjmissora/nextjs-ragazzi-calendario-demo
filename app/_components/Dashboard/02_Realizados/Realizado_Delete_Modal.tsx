@@ -5,7 +5,6 @@ import { PagoType } from "@/app/_lib/schema/pago.type"
 import { useActionState, useRef } from "react"
 import toast from "react-hot-toast"
 import SubmitBtn from "../../SubmitBtn"
-import { eliminarRealizadoAction } from "@/app/_lib/actions/realizados.action"
 
 export const RealizadoDeleteModal = ({ realizado }: { realizado: PagoType }) => {
 
@@ -13,11 +12,7 @@ export const RealizadoDeleteModal = ({ realizado }: { realizado: PagoType }) => 
 
   const [, formAction, isPending] = useActionState(async () => {
 
-    const res = await eliminarRealizadoAction(realizado)
-    if (!res?.success) {
-      toast.error(res.message)
-    }
-    else toast.success(res.message)
+    toast.success("Pago borrado")
     dialogRef.current?.close()
 
   }, null)

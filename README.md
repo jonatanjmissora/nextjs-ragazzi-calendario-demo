@@ -2,7 +2,7 @@
 
 Dashboard that allows you to schedule due dates in chronological order. Filters, due date editing, history, calculator, authentication... 
 
-Payment Dashboard:
+Payment due date Dashboard:
   - navbar and footer
   - dark/light theme
   - authorization
@@ -23,9 +23,3 @@ Payment Dashboard:
 live demo [here](https://github.com/jonatanjmissora/nextjs15-navbar)
 
 This repository was built by [Jonatan Missora](https://github.com/jonatanjmissora).  👉  <img src="/public/avatar.webp" width="70px" height="auto" alt="avatar image"/>
-
-
-TODO:
-
-poner que es una version demo en el footer, 
-el edit form, no toma el alto de la pantalla, el footer esta pegado

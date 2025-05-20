@@ -17,7 +17,7 @@ export default function LoginForm() {
   const formRef = useRef<HTMLFormElement>(null);
   const [showPassword, setShowPassword] = useState<boolean>(false)
   const { register, formState: { errors }, handleSubmit } = useForm<UserType>({ resolver: zodResolver(userSchema) })
-  const [formState, formAction, isPending] = useLoginActionState()
+  const [, formAction, isPending] = useLoginActionState()
   const onSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault()
     handleSubmit(() => {
@@ -46,7 +46,7 @@ export default function LoginForm() {
           <InputRHF
             className=""
             label="username"
-            defaultValue={formState?.prevState.username}
+            defaultValue={""}
             error={errors.username?.message}
             register={register}
             placeholder='usuario'
@@ -60,7 +60,7 @@ export default function LoginForm() {
               className="w-full"
               label="userpassword"
               type={showPassword ? "text" : "password"}
-              defaultValue={formState?.prevState.userpassword}
+              defaultValue={""}
               error={errors.userpassword?.message}
               register={register}
               placeholder='contraseña'
@@ -76,7 +76,6 @@ export default function LoginForm() {
           <div className='w-1/2 flex'>
             <SubmitBtn text={"Ingresar"} isPending={isPending} className='size-11' classNameSVG='' />
           </div>
-          <p className='text-orange-700'>{formState?.message}</p>
         </div>
 
         <div className="w-full flex gap-2 opacity-50">

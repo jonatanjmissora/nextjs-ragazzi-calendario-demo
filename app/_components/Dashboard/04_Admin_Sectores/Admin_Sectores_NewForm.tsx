@@ -6,14 +6,9 @@ import toast from 'react-hot-toast';
 import SubmitBtn from '../../SubmitBtn';
 import PlusSVG from '@/app/_assets/PlusSVG';
 
-type RespType = {
-  success: boolean;
-  message: string;
-} | null
+export default function AdminSectoresNewForm({ rubroActual }: { rubroActual: SectoresType }) {
 
-export default function AdminSectoresNewForm({ sectoresType, sectoresList, rubroActual }: { sectoresType: string, sectoresList: SectoresType[], rubroActual: SectoresType }) {
-
-  const [, formAction, isPending] = useActionState(async (prevState: RespType, formData: FormData) => {
+  const [, formAction, isPending] = useActionState(async () => {
 
     toast.success(`Sector añadido`)
     return

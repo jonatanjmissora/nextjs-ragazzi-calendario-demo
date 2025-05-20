@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../_styles/globals.css";
 import "../_styles/globals.media.css";
-import { Toaster } from "react-hot-toast";
 import { ThemeProvider } from "next-themes";
 import Navbar from "../_components/Navbar/Navbar_";
 import Footer from "../_components/Footer";
@@ -46,15 +45,15 @@ export default async function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased relative`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased relative flex flex-col`}
       >
         <ThemeProvider>
           <Navbar />
-          <main>
+          <main className="flex-1">
             {children}
 
             <ToasterComponent />
-            
+
           </main>
 
           <Footer />

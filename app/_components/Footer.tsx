@@ -13,15 +13,17 @@ export default async function Footer() {
   const user = await getUserFromCookie()
 
   return (
-    <footer className='text-foreground footer-height w-full flex justify-end items-center px-5 relative z-100'>
+    <footer className='text-foreground h-max py-4 sm:footer-height w-full flex gap-2 flex-col sm:flex-row justify-between items-center px-5 relative z-100'>
 
       {
         user &&
-        <div className='mr-auto flex gap-2 items-center w-8 overflow-hidden hover:w-[70%] sm:hover:w-[20rem]'>
+        <div className='flex gap-2 items-center w-8 overflow-hidden hover:w-[70%] sm:hover:w-[20rem]'>
           <span className='w-8'><WebSVG className='size-7 text-slate-500' currentColor={"currentColor"} /></span>
           {weblinks.map(weblink => <Weblink key={weblink._id} weblink={weblink} />)}
         </div>
       }
+
+      <span className='text-bold text-yellow-600 tracking-wider'>⚠ Demo version</span>
 
       <span>K@to {year}</span>
 

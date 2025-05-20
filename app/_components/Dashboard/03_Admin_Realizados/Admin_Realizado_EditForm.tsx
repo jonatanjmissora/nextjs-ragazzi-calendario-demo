@@ -7,7 +7,7 @@ import { PagoType } from "@/app/_lib/schema/pago.type";
 
 export default function RealizadoEditForm({ realizado, sectoresReset }: { realizado: PagoType, sectoresReset: SectoresType[] }) {
 
-  const [, formAction, isPending] = useRealizadoActionState(realizado)
+  const [, formAction, isPending] = useRealizadoActionState()
 
   return (
     <EditForm

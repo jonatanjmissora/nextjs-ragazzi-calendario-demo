@@ -31,7 +31,7 @@ export default async function AdminSectoresList({ sectoresType }: { sectoresType
           <div key={index} className="flex flex-col border-b border-foreground25 last:border-b-0 py-4">
             <div className="w-full flex items-center justify-between">
               <span className="admin-sectores-rubro font-bold">{rubroActual._id}</span>
-              <AdminSectoresNewForm sectoresType={sectoresType} sectoresList={sectoresList} rubroActual={rubroActual} />
+              <AdminSectoresNewForm rubroActual={rubroActual} />
             </div>
 
             <div className="flex flex-wrap my-4 sectores-gap">

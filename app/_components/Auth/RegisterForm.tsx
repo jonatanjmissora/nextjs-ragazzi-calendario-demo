@@ -17,11 +17,11 @@ export default function RegisterForm() {
   const formRef = useRef<HTMLFormElement>(null);
   const [showPassword, setShowPassword] = useState<boolean>(false)
   const { register, formState: { errors }, handleSubmit } = useForm<UserType>({ resolver: zodResolver(userSchema) })
-  const [formState, formAction, isPending] = useRegisterActionState()
+  const [, formAction, isPending] = useRegisterActionState()
   const onSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault()
     handleSubmit(() => {
-      startTransition(() => formAction(new FormData(formRef.current!)))
+      startTransition(() => formAction())
     })(evt);
   }
 
@@ -46,7 +46,7 @@ export default function RegisterForm() {
           <InputRHF
             className=""
             label="username"
-            defaultValue={formState?.prevState.username}
+            defaultValue={""}
             error={errors.username?.message}
             register={register}
           />
@@ -59,7 +59,7 @@ export default function RegisterForm() {
               className="w-full"
               label="userpassword"
               type={showPassword ? "text" : "password"}
-              defaultValue={formState?.prevState.userpassword}
+              defaultValue={""}
               error={errors.userpassword?.message}
               register={register}
             />
@@ -74,7 +74,6 @@ export default function RegisterForm() {
           <div className='w-1/2 flex'>
             <SubmitBtn text={"Registrar"} isPending={isPending} className='size-11' />
           </div>
-          <p className='text-orange-700'>{formState?.message}</p>
         </div>
 
         <div className="w-full flex gap-2 opacity-50">
